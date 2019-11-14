@@ -19,7 +19,7 @@ spec:
         emptyDir: {}
       containers:
       - name: jenkins
-        image: kmlaydin/modified-jenkins:latest
+        image: minhtrung/modified-jenkins:latest
         ports:
         - containerPort: 8080
         - containerPort: 50000
@@ -33,4 +33,4 @@ spec:
         volumeMounts:
         - name: dind-storage
           mountPath: /var/lib/docker
-      
+
