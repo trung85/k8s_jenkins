@@ -19,14 +19,17 @@ pipeline {
         sh "docker rmi minhtrung/podinfo:${env.BUILD_NUMBER}"
       }
     }
-    stage('Apply Kubernetes Files') {
+    stage('(DISABLED) Apply Kubernetes Files') {
       steps {
-          withKubeConfig([credentialsId: 'kubeconfig']) {
-          // sh 'cat deployment.yaml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g" | kubectl apply -f -'
-          // sh 'kubectl apply -f service.yaml'
-          sh 'echo "cat deployment.yaml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g" | kubectl apply -f -"'
-          sh 'echo "kubectl apply -f service.yaml"'
+        steps {
+          sh "echo 'cat deployment.yaml | sed \"s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g\" | kubectl apply -f -'"
+          sh "echo 'kubectl apply -f service.yaml'"
         }
+        // DISABLED
+        //   withKubeConfig([credentialsId: 'kubeconfig']) {
+        //   sh 'cat deployment.yaml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g" | kubectl apply -f -'
+        //   sh 'kubectl apply -f service.yaml'
+        // }
       }
   }
 }
