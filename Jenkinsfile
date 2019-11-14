@@ -21,10 +21,8 @@ pipeline {
     }
     stage('(DISABLED) Apply Kubernetes Files') {
       steps {
-        steps {
-          sh "echo 'cat deployment.yaml | sed \"s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g\" | kubectl apply -f -'"
-          sh "echo 'kubectl apply -f service.yaml'"
-        }
+        sh "echo 'cat deployment.yaml | sed \"s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g\" | kubectl apply -f -'"
+        sh "echo 'kubectl apply -f service.yaml'"
         // DISABLED
         //   withKubeConfig([credentialsId: 'kubeconfig']) {
         //   sh 'cat deployment.yaml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g" | kubectl apply -f -'
